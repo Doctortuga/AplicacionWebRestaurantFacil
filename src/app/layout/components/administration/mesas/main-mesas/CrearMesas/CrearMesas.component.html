@@ -1,0 +1,43 @@
+<mat-dialog-content class=""cdkDragRootElement=".cdk-overlay-pane">
+  <div >
+    <div>
+      <mat-toolbar class="d-flex justify-content-end" color="primary">
+        <span style="align:center;width:1000px;text-align:center;">{{tituloBoton}}</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="cerrar()">
+          <mat-icon> clear icon</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+    <br>
+    <form [formGroup]="formulario" (ngSubmit)="agregarUsuario()">
+      <div class="row">
+        <div class="col-12">
+          <div class="form">
+            <input type="text" formControlName="Nro_mesa" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+            <label for="nromesa" class="form__label">N° mesa</label>
+          </div>
+          <br>
+          <div class="form">
+            <select name="dispo" id="dispo" class="p-3 mb-5 bg-body rounded form__input" formControlName = "Disponibilidad" autocomplete="off" placeholder=" ">
+              <option *ngFor="let dis of dispo" [value]="dis.id">{{dis.nombre}}</option>
+            </select>
+            <label for="dispo" class="form__label">Disponibilidad</label>
+          </div>
+          <br>
+          <div class="form">
+            <input type="number" formControlName="Capacidad" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+            <label for="capacidad" class="form__label">Capacidad de la mesa</label>
+          </div>
+          <br>
+          <div class="form">
+            <input type="number" formControlName="Id_reserva" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+            <label for="idreserva" class="form__label">Id reserva</label>
+          </div>
+          <br>
+        </div>
+      </div>
+      <button class="btn btn-primary"  [disabled]="formulario.invalid" type="submit">{{tituloBoton}}</button>
+    </form>
+  </div>
+</mat-dialog-content>

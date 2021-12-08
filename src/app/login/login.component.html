@@ -1,0 +1,46 @@
+
+   
+<div class="login-page">
+    <div class="content">
+        <!-- <h1 class="app-name">Sb Admin Material</h1> -->
+        <form *ngIf="!loading"  [formGroup]="form" class="login-form" fxFlex  >
+            <div class="text-center">
+                <h2 class="app-name ">RestaurApp</h2>
+            </div>
+            <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input formControlName="rut" matInput placeholder="Rut" maxlength="10">
+                    </mat-form-field>
+                    <small *ngIf="form.controls['rut'].hasError('required') && form.controls['rut'].touched"
+                    class="mat-text-warn">*Debe indicar clave 
+                    <br> </small>
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <mat-form-field class="w-100">
+                        <input formControlName="clave" matInput type="password" placeholder="Contraseña" >
+                    </mat-form-field> 
+                </div>
+            </div>
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column" style="margin: 20px 0 30px 0">
+                <div fxFlex>
+                    <mat-checkbox color="primary">Recordar</mat-checkbox>
+                </div>
+                <div fxFlex  fxLayoutAlign="end">
+                    <a href="javascript:void(0)">Olvide mi contraseña</a>
+                </div>
+            </div>
+ 
+            <mat-spinner color="warn" class="mx-auto mt-2 mb-4 " *ngIf="loading"></mat-spinner>
+
+            <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+                <div fxFlexFill>
+                    <button mat-raised-button color="primary" class="w-100" (click)="onLogin()" [disabled]="!form.valid">Ingresar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

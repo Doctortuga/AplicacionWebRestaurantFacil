@@ -1,0 +1,111 @@
+
+
+  <mat-toolbar class="d-flex justify-content-end" color="primary">
+    <span style="align:left;width:2000px;text-align:left;">Mesas</span>
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+  <br>
+  <div class="row row-cols-1 row-cols-md-3 g-4" *ngFor="let item of getData">
+    <div class="col" >
+      <div class="card h-100 bg-secondary text-white" >
+        <mat-icon>search</mat-icon>
+        <div class="card-body text-center">
+          <h5 class="card-title" style="color: white;">Mesas Totales</h5>
+          <H1 style="color: white;">{{item.Mesas_Totales}}</H1>
+        </div>
+        <div class="card-footer" style="background-color: white;">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 bg-success text-white">
+        <mat-icon>search</mat-icon>
+        <div class="card-body text-center">
+          <h5 class="card-title" style="color: white;">Disponibles</h5>
+          <H1 style="color: white;">{{item.Mesas_Disponibles}}</H1>
+        </div>
+        <div class="card-footer" style="background-color: white;">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card h-100 bg-danger text-white">
+        <mat-icon>search</mat-icon>
+        <div class="card-body text-center">
+          <h5 class="card-title" style="color: white;">Ocupadas</h5>
+          <H1 style="color: white;">{{item.Mesas_Ocupadas}}</H1>
+        </div>
+        <div class="card-footer" style="background-color: white;">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <mat-spinner color="warn" class="mx-auto mt-2 mb-4 " *ngIf="loading"></mat-spinner>
+  <div class="d-flex justify-content-end">
+    <button mat-raised-button color="primary" (click)="agregar()">Agregar</button>
+  </div>
+  <div >
+    <div  class="mat-elevation-z8" >
+      <mat-form-field appearance="standard" class="w-100 p-3"  > 
+        <mat-label>Buscar por N° Mesa </mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+      </mat-form-field>
+  
+  
+      <table  mat-table  [dataSource]="dataSource"  class="w-100 p-3 "  matSort >
+        <!-- Position Column -->
+        <ng-container matColumnDef="Nro_mesa" >
+          <th mat-header-cell *matHeaderCellDef class="w-20 p-3" mat-sort-header>Nro_mesa</th>
+          <td mat-cell *matCellDef="let element"> {{element.Nro_mesa}} </td>
+        </ng-container>
+        
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="Disponibilidad" >
+          <th mat-header-cell *matHeaderCellDef class="w-20 p-3" mat-sort-header> Disponibilidad </th>
+          <td mat-cell *matCellDef="let element"> {{element.Disponibilidad}} </td>
+        </ng-container>
+    
+        <!-- Weight Column -->
+        <ng-container matColumnDef="Id_reserva">
+          <th mat-header-cell *matHeaderCellDef class="w-20 p-3"> Id_reserva</th>
+          <td mat-cell *matCellDef="let element"> {{element.Id_reserva}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Capacidad">
+          <th mat-header-cell *matHeaderCellDef class="w-20 p-3">Capacidad</th>
+          <td mat-cell *matCellDef="let element"> {{element.Capacidad}} </td>
+        </ng-container>
+    
+        
+        <!-- Weight Column -->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef ></th>
+          <td mat-cell *matCellDef="let element" style="text-align: right;">
+            <a *ngIf="element.Disponibilidad == 'N'"  style="color:#b01825;" matTooltip="Ocupada">
+              <mat-icon>remove_circle</mat-icon>
+            </a>
+            <a *ngIf="element.Disponibilidad == 'Y'" style="color:#1f516f;"matTooltip="Editar Mesa" (click)="editar(element)">
+              <mat-icon>edit</mat-icon>
+            </a>
+            <a *ngIf="element.Disponibilidad == 'Y'"  (click)="eliminarUsuario(element.Nro_mesa)" style="color:#e15639;"matTooltip="Eliminar Mesa">
+              <mat-icon>delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+    
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <div  *ngIf="dataSource.data.length == 0 ">No hay datos</div>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Items por pagina"></mat-paginator>
+    
+
+  
+  </div>
+  </div>

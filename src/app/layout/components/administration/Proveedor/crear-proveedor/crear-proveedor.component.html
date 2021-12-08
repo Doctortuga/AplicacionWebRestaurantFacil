@@ -1,0 +1,33 @@
+<mat-dialog-content cdkDragRootElement=".cdk-overlay-pane">
+  <div>
+    <div>
+      <mat-toolbar class="d-flex justify-content-end" color="primary">
+        <span style="align:center;width:1000px;text-align:center;">{{tituloBoton}}</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="cerrar()">
+          <mat-icon> clear icon</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+    <br>
+      <form [formGroup]="formulario" (ngSubmit)="agregarProveedor()">
+        <div class="row">
+          <div class="col-12">
+            <div class="form">
+              <input type="text" formControlName="Id_Proveedor" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="idproveedor" class="form__label">Id_Proveedor</label>
+            </div>
+            <br>
+            <div class="form">
+              <input type="text" formControlName="Nombre" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="idproveedor" class="form__label">Nombre</label>
+            </div>
+            <br>
+          </div>
+          <br>
+          <button class="btn btn-primary" [disabled]="formulario.invalid" type="submit">{{tituloBoton}}</button>
+        </div>
+        
+      </form>
+  </div>
+</mat-dialog-content>

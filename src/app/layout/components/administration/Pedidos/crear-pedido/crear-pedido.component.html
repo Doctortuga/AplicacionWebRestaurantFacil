@@ -1,0 +1,118 @@
+<mat-dialog-content cdkDragRootElement=".cdk-overlay-pane">
+  <div class="w-100 p-3">
+    <div class="">
+      <div class="row">
+              <mat-toolbar class="d-flex justify-content-end" color="primary">
+                <span style="align:center;width:1300px;text-align:center;">{{tituloBoton}}</span>
+                      <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="cerrar()">
+                        <mat-icon> clear icon</mat-icon>
+                      </button>
+              </mat-toolbar>
+        </div>         
+    </div>
+    <br>
+    <form [formGroup]="formulario" (ngSubmit)="agregarPedido()">
+      <div class="row">
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <div class="form">
+                      <input type="text" formControlName="Id_pedido" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                      <label for="pedido" class="form__label">Pedido</label>
+                    </div>
+                    <br>
+                    <div class="form">
+                      <input type="text" formControlName="Total" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                      <label for="total" class="form__label">Total</label>
+                    </div>
+                    <br>
+                    <div class="form">
+                      <input type="date" formControlName="Fecha" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                      <label for="fecha" class="form__label">Fecha Ingreso compra</label>
+                    </div>
+                    <br>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-6">
+                    <div class="form">
+                      <input type="text" formControlName="Responsable" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                      <label for="responsble" class="form__label">Responsable</label>
+                    </div>
+                    <br>
+                    <div class="form">
+                      <input type="text" formControlName="Usuario_rut" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                      <label for="rut" class="form__label">Rut</label>
+                    </div>
+                    <br>
+                    <div class="form">
+                      <select name="Proveedores" id="proveedores" class="p-3 mb-5 bg-body rounded form__input" formControlName = "Id_Proveedor" autocomplete="off" placeholder=" ">
+                        <option *ngFor="let dis of proveedor" [value]="dis.Id_Proveedor">{{dis.Nombre}}</option>
+                      </select>
+                      <label for="prov" class="form__label">Proveedores</label>
+                    </div>
+                    <br>
+                  </div>
+      </div>
+    </form>
+  </div>
+<!-- Apartado seleccion de productos -->
+<div class="row1">
+ <div class="form">
+    <input type="text" [(ngModel)]="texto" (ngModelChange)="cambioTexto()" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+    <label for="buscar" class="form__label">Buscar producto por nombre</label>
+  </div>
+  <div cdkDropListGroup>
+    <div class="row">
+      <div class="col-6 col-md-4 col-lg-4 w-50 p-3">
+        <div class="">
+          <h2>Productos Disponibles</h2>
+          <div
+            cdkDropList
+            [cdkDropListData]="productos"
+            class="example-list"
+            cdkDropListSortingDisabled
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of productos" cdkDrag>{{item.Nombre}} {{item.Cantidad}}
+              <img src={{item.Imagen}} style="width: 40px;" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-4 col-lg-4 w-50 p-3 ">
+        <div class="">
+          <h2>Pedido a proveedores</h2>
+          <div 
+            cdkDropList
+            [cdkDropListData]="pedidos"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+                <div class="w-100 p-3 shadow-lg p-3 mb-5 bg-body rounded" *ngFor="let item of pedidos" cdkDrag >
+                    {{item.Nombre}}
+                    <img src={{item.Imagen}}  style="width: 40px;" class="space-right" alt="">
+                      <div class="form1">
+                        <label for="Cantidad" class="form__label1">Cantidad del productos: </label>
+                        <br>
+                        <input  type="number" id="cantidadPed" [(ngModel)]="item.cantidadPedido" class="space-right bg-body rounded form1__input1" style="min-width: 50px;max-width: 70px;" required (change)="PrecioTotal()">
+                      </div>
+                      <div class="form1">
+                        <label for="Preciio" class="form__label1">Precio de compra: </label>
+                        <br>
+                        <input type="text"  id="precioComp" [(ngModel)]="item.precioCompra" class="space-right bg-body rounded form1__input1" style="min-width: 50px;max-width: 70px;" required (change)="PrecioTotal()"> 
+                      </div>
+                      <div class="form1">
+                        <label for="FechaVencimiento" class="form__label1">Fecha vencimiento producto: </label>
+                        <br>
+                        <input type="date"  id="fechaVenc" [(ngModel)]="item.fechaVencimiento"  class="space-right bg-body rounded form1__input1" style="width: 130px;" required >
+                      </div>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary"  type="submit" [disabled]="formulario.invalid || pedidos.length === 0 || verificar()" (click)="agregarPedido()">Guardar</button>
+  <!-- <button class="btn btn-primary"  type="submit"  (click)="PrecioTotal()">ObtenerTotal</button> -->
+</div>
+</mat-dialog-content>
+
+
+
+
+

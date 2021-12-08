@@ -1,0 +1,55 @@
+<mat-dialog-content class=""cdkDragRootElement=".cdk-overlay-pane">
+  <div >
+    <div>
+      <mat-toolbar class="d-flex justify-content-end" color="primary">
+        <span style="align:center;width:1000px;text-align:center;">{{tituloBoton}}</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="cerrar()">
+          <mat-icon> clear icon</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+    <br>
+      <form [formGroup]="formulario" (ngSubmit)="agregarUsuario()">
+        <div class="row">
+          <div class="col-12">
+            <div class="form">
+              <input type="text" formControlName="Id_Producto" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="idproducto" class="form__label">Id_Producto</label>
+            </div>
+            <br>
+            <div class="form">
+              <input type="text" formControlName="Nombre" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="nom" class="form__label">Nombre</label>
+            </div>
+            <br>
+            <div class="form">
+              <input type="text" formControlName="Precio" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="precio" class="form__label">Precio</label>
+            </div>
+            <br>
+            <div class="form">
+              <select name="cate" id="cate" class="p-3 mb-5 bg-body rounded form__input" formControlName = "Categoría" autocomplete="off" placeholder=" ">
+                <option *ngFor="let dis of dispo" [value]="dis.nombre">{{dis.nombre}}</option>
+              </select>
+              <label for="cate" class="form__label">Categoría</label>
+            </div>
+            <br>
+            <div class="form">
+              <select name="cate" id="cate" class="p-3 mb-5 bg-body rounded form__input" formControlName = "Formato" autocomplete="off" placeholder=" ">
+                <option *ngFor="let dis1 of dispo1" [value]="dis1.nombre">{{dis1.nombre}}</option>
+              </select>
+              <label for="cate" class="form__label">Formato</label>
+            </div>
+            <br>
+            <div class="form">
+              <input type="text" formControlName="Imagen" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+              <label for="img" class="form__label">Imagen</label>
+            </div>
+            <br>
+          </div>
+        </div>
+            <button class="btn btn-primary" [disabled]="formulario.invalid" type="submit">{{tituloBoton}}</button>
+      </form>
+  </div>
+</mat-dialog-content>

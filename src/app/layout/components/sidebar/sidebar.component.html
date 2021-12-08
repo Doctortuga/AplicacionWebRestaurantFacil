@@ -1,0 +1,33 @@
+<div id="sidebar" style="background-color: rgb(34, 40, 49)">
+    <button mat-button [matMenuTriggerFor]="" class="text-danger" class="shadow-lg p-3 mb-5 bg-body rounded"
+    class="w-100 p-3 " [routerLink]="'/dashboard'" style="color: white;" >
+    <img src="https://cdn-icons-png.flaticon.com/128/553/553416.png" alt="" width="25 px"> {{ 'Incio' | translate }} </button>
+    <button  mat-button [matMenuTriggerFor]="Administracion" class="text-danger" class="shadow-lg p-3 mb-5 bg-body rounded"
+    class="w-100 p-3" style="color: white;">
+    <img src="https://cdn-icons-png.flaticon.com/128/3135/3135715.png" alt="" width="25 px" > {{ 'Administracion' | translate }} </button>
+            <mat-menu #Administracion="matMenu" >
+                <button mat-menu-item [routerLinkActive]="'active'" [routerLink]="['/usuario']">
+                <img src="https://cdn-icons.flaticon.com/png/512/4460/premium/4460928.png?token=exp=1638756399~hmac=9a46f80ea3ca6012b75155b0bbe6f7ef" alt="" width="20 px"> {{ 'Usuarios' | translate }}
+            </button>
+            <button mat-menu-item [routerLinkActive]="'active'" [routerLink]="['/mesas']">
+                <img src="https://cdn-icons-png.flaticon.com/128/1535/1535032.png" alt="" width="20 px"> {{ 'Mesas' | translate }}
+            </button>
+            <button mat-menu-item [routerLinkActive]="'active'" [routerLink]="['/producto']">
+                <img src="https://cdn-icons.flaticon.com/png/512/4400/premium/4400997.png?token=exp=1638756467~hmac=e7bd3a419800e64c898a7f76f3c8dea0" alt="" width="20 px"> {{ 'Productos' | translate }}
+            </button>
+            <button mat-menu-item [routerLinkActive]="'active'" [routerLink]="['/proveedor']">
+                <img src="https://cdn-icons-png.flaticon.com/128/1524/1524983.png" alt="" width="20 px"> {{ 'Proveedores' | translate }}
+            </button>
+            </mat-menu>
+
+
+
+            <button  mat-button [matMenuTriggerFor]="Bodega" class="text-danger" class="shadow-lg p-3 mb-5 bg-body rounded"
+            class="w-100 p-3" style="color: white;">
+            <img src="https://cdn-icons-png.flaticon.com/128/3649/3649204.png" alt="" width="25 px" > {{ 'Bodega' | translate }} </button>
+                    <mat-menu #Bodega="matMenu"  >
+                        <button mat-menu-item [routerLinkActive]="'active'" [routerLink]="['/inventario']">
+                        <img src="https://cdn-icons-png.flaticon.com/128/2825/2825867.png" alt="" width="20 px"> {{ 'Inventario' | translate }}
+                    </button>
+                    </mat-menu>
+</div>

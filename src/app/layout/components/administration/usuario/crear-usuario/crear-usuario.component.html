@@ -1,0 +1,45 @@
+<mat-dialog-content class=""cdkDragRootElement=".cdk-overlay-pane">
+  <div >
+    <div>
+      <mat-toolbar class="d-flex justify-content-end" color="primary">
+        <span style="align:center;width:1000px;text-align:center;">{{tituloBoton}}</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" (click)="cerrar()">
+          <mat-icon> clear icon</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+    <div>
+      <br>
+        <form [formGroup]="formulario" (ngSubmit)="agregarUsuario()">
+          <div class="row">
+            <div class="col-12">
+              <div class="form">
+                <input type="text" formControlName="Rut" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                <label for="idproveedor" class="form__label">Rut</label>
+              </div>
+              <br>
+              <div class="form">
+                <input type="text" formControlName="Nombre" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                <label for="idproveedor" class="form__label">Nombre</label>
+              </div>
+              <br>
+              <div class="form">
+                <input [type]="hide ? 'password' : 'text'" formControlName="Contraseña" class="p-3 mb-5 bg-body rounded form__input" autocomplete="off" placeholder=" ">
+                <label for="idproveedor" class="form__label">Ingresa una contraseña</label>
+              </div>
+              <br>
+              <div class="form">
+                <select name="Proveedores" id="proveedores" class="p-3 mb-5 bg-body rounded form__input" formControlName = "Id_rol" autocomplete="off" placeholder=" ">
+                  <option *ngFor="let rol of roles" [value]="rol.id">{{rol.nombre}}</option>
+                </select>
+                <label for="prov" class="form__label">Rol</label>
+              </div>
+              <br>
+            </div>
+          </div>
+              <button class="btn btn-primary" [disabled]="formulario.invalid" type="submit">{{tituloBoton}}</button>
+        </form>
+    </div>
+  </div>
+</mat-dialog-content>
